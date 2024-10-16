@@ -1,7 +1,6 @@
-import { Module } from '@nestjs/common';
-import { SubscriptionModule } from './subscription.module';
+import {Module} from '@nestjs/common';
 
 @Module({
-  imports: [SubscriptionModule]
+  imports: []
 })
 export class ChatModule {}
