@@ -10,7 +10,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   backend:
     build: ./apps/backend
@@ -40,7 +40,7 @@ services:
     environment:
       KEY: ${DIRECTUS_KEY}
       SECRET: ${DIRECTUS_SECRET}
-      DATABASE_HOST: ${POSTGRES_HOST}
+      DATABASE_HOST: postgres
       DATABASE_PORT: ${POSTGRES_PORT}
       DATABASE_NAME: ${POSTGRES_DB}
       DATABASE_USER: ${POSTGRES_USER}
@@ -49,3 +49,6 @@ services:
       - '8055:8055'
     depends_on:
       - postgres
+
+volumes:
+  postgres_data:
