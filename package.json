@@ -1,0 +1,13 @@
+{
+  "name": "chats",
+  "version": "1.0.0",
+  "description": "<p>Test task for Fullstack JS Developer position.</p>\r <h2>Nest + React</h2>",
+  "main": "index.js",
+  "packageManager": "npm@10.8.2",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
