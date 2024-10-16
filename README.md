@@ -1,3 +1,6 @@
-# Chats
-<p>Test task for Fullstack JS Developer position.</p>
-<h2>Nest + React</h2>
+# Test task
+
+Fullstack JS Developer.
+
+## Using this example
+
