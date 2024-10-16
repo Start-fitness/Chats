@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  backend:
+    build: ./apps/backend
+    container_name: backend
+    environment:
+      DATABASE_URL: postgres://user:password@postgres:5432/app_db
+      PORT: 3001
+    ports:
+      - '3001:3001'
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./apps/frontend
+    container_name: frontend
+    environment:
+      API_URL: http://localhost:3001
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+
+  admin:
+    image: directus/directus:latest
+    container_name: admin
+    environment:
+      KEY: your_key
+      SECRET: your_secret
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: app_db
+      DATABASE_USER: user
+      DATABASE_PASSWORD: password
+    ports:
+      - '8055:8055'
+    depends_on:
+      - postgres
